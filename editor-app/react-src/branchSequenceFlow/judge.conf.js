@@ -1,4 +1,4 @@
-export default {
+const rawData = {
     text:[{
             value: '==',
             text: '等于'
@@ -160,3 +160,9 @@ export default {
             text: '小于等于'
         }]
 }
+const arr = []
+let k
+for(k in rawData){
+    rawData[k].unshift({value: 'initial',text: '请选择'})
+}
+export default rawData

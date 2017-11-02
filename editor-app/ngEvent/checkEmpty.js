@@ -11,8 +11,19 @@ window.globalEvent.checkEmpty = ($scope) => {
     const checkConnect =  json.childShapes.some((el,index)=>{
         if(el.outgoing.length == 0){
             if(el.stencil.id != 'EndNoneEvent' && el.stencil.id != 'EndErrorEvent'){
+                if(el.stencil.id == 'SequenceFlow'){
+                    let sequenceflow = window.windowCanvas.getChildShapeByResourceId(el.resourceId)
+                    let incomingName = sequenceflow.incoming[0] && sequenceflow.incoming[0].properties["oryx-name"] || ''
+                    if(incomingName != ''){
+                        window.showAlert('节点"'+ incomingName +'"的连线未连接上其他节点')                        
+                        return true
+                    }else{
+                        window.showAlert('连线未连接上其他节点')
+                        return true
+                    }
+                }
                 let nodeName = el.properties.name && '"'+el.properties.name+'"' || ''
-                window.showAlert('节点'+ nodeName +'未连接上')
+                window.showAlert('节点'+ nodeName +'未连接上其他节点')
                 return true
             }
         }

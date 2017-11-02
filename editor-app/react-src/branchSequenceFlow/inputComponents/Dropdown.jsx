@@ -1,20 +1,27 @@
 import React,{createClass} from 'react'
+import Dropdown from './dpdw.jsx'
 
-class Comp extends React.Component { 
-    constructor(props) {
-        super(props)
-        this.click = this.click.bind(this)
+function Comp({ inputData, oninput, inputCtrlInfoData }){
+    if(inputData.text ==''){
+        if(inputData.value ==''){
+            inputData = {text:'请选择',value:'initial'}
+        }
     }
-    click(event){
-    }
-    render(){
-        return (
-            <div className="input-text-container">
-                <input onClick={this.click} ref='myInput' type='text' className="input-text" value={this.props.value} onChange={this.props.oninput}/>
-            </div>
-        )
-    }
+    const options = inputCtrlInfoData.options.map(el=>{
+        el.text = el.name || el.text
+        return el
+    })
+    const choose = (item) =>{
+        oninput({
+            text:item.text,
+            value:'"'+item.value+'"'
+        })
+    } 
+    return (
+        <div className="input-text-container" style={{height:'30px',display:'flex'}}>
+            <Dropdown options={options} choose={choose} choosedOption={inputData}/>
+        </div>
+    )
 }
-
 export default Comp
 

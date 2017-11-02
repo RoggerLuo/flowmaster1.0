@@ -1,4 +1,6 @@
 import { toJS, fromJS, List, Map } from 'immutable';
+import { defaultOption, newRule, newCreate } from './branch/basic'
+
 let initial = {
     environmentVariable: [{ value: 'date', text: 'date' }],
     formProperties: [],
@@ -24,7 +26,6 @@ let initial = {
         */
     ]
 }
-import { defaultOption, newRule, newCreate } from './branch/basic'
 const Reducer = (state = initial, action) => {
     let data = fromJS(state)
     switch (action.type) {
@@ -41,31 +42,38 @@ const Reducer = (state = initial, action) => {
             const ruleDataPath = ['dataRepo', dataRepoInd, 'conditions', groupIndex, 'data', ruleInd]
                 /* 定义核心 mutate 逻辑 */
             const updateOption = el => el.set(action.entryIndex, action.optionItem) //改变当前dropdown的选中项
+            //二级联动
             const cascade2 = el => el.set('entry2template', String(lastCascaderInd)) //改变entry2template的值
                 .set('entry2', fromJS(defaultOption())) //设置默认值
+                .set('entry3', fromJS(defaultOption()))
+                .set('input',fromJS(newRule().input))
+                .set('inputCtrlInfoData',fromJS({cate:'text'}))
+            //三级联动
             const cascade3 = el => {
                 const entry2tplInd = el.toJS().entry2template 
                 if(entry2tplInd == 1){ //1表单组件
-                    console.log(action.optionItem)                    
-                    return el.set('ctrlTemplate',action.optionItem.cate) //ctrlTemplate代表了控件类型，决定第三个下拉和最后一个空间类型
+                    return el.set('inputCtrlInfoData',action.optionItem) //ctrlTemplate代表了控件类型，决定第三个下拉和最后一个空间类型
                         .set('entry3', fromJS(defaultOption()))
+                        .set('input',fromJS(newRule().input))
                 }
                 if(entry2tplInd == 2){ //2用户字段
-                    return el
+                    return el.set('inputCtrlInfoData',action.optionItem) //ctrlTemplate代表了控件类型，决定第三个下拉和最后一个空间类型
+                        .set('entry3', fromJS(defaultOption()))
+                        .set('input',fromJS(newRule().input))
                 }
+                return el
             }
             /* 执行逻辑 */
             data = data.updateIn(ruleDataPath, 'initial', updateOption)
-            if (action.entryIndex == 'entry1') {
+            if (action.entryIndex == 'entry1') { //二级联动
                 data = data.updateIn(ruleDataPath, 'initial', cascade2)
             }
-            if (action.entryIndex == 'entry2') {
+            if (action.entryIndex == 'entry2') { //三级联动
                 data = data.updateIn(ruleDataPath, 'initial', cascade3)
             }
             return data.toJS()
 
-            /* 清空某个sequenceflow */
-        case 'clearSFData':
+        case 'clearSFData': /* 清空某个sequenceflow */
             let clearIndex = data.get('dataRepo').findKey((el, index, iter) => el.get('id') == action.id)
             return data.updateIn(['dataRepo', clearIndex, 'conditions'], 'initial', (el) => {
                 return fromJS([{
@@ -75,8 +83,6 @@ const Reducer = (state = initial, action) => {
                     ruleMode: 'normal'
                 }])
             }).toJS()
-
-            /* 清空某个sequenceflow */
 
             /* 加载 表单字段 和 用户字段 时 */
         case 'updateFormProperties':
@@ -129,7 +135,7 @@ const Reducer = (state = initial, action) => {
         case 'ruleOnInput':
             let repoIndex4 = data.get('dataRepo').findKey((el, index, iter) => el.get('id') == state.id)
             return data.updateIn(['dataRepo', repoIndex4, 'conditions', action.key1, 'data', action.key2], 'initial', (el) => {
-                return el.set('input', action.content)
+                return el.set('input', action.inputData)
             }).toJS()
 
         case 'linkage':
@@ -176,7 +182,6 @@ const Reducer = (state = initial, action) => {
                 }).toJS()
             }
             return data.updateIn(['dataRepo', repoIndex], 'initial', (el) => {
-
                 return el.set('conditions', el.get('conditions').push(fromJS({
                     data: [
                         newRule()
@@ -184,7 +189,6 @@ const Reducer = (state = initial, action) => {
                     ],
                     ruleMode: 'normal'
                 })))
-
             }).toJS()
 
         case 'addRule':

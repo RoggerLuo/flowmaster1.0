@@ -7,11 +7,11 @@ const Radios = ({mode1,mode2,element,put}) => {
         view = (
             <div className="radio-box">
                 <label className="radio-lable" onClick={mode1}>
-                    <span className="radio-img"><img width="20" height="20" src="editor-app/react-src/branchSequenceFlow/unselected.png" /></span>
+                    <span className="radio-img"><img width="20" height="20" src={require("./unselected.png")} /></span>
                     <span className="radio-text">{put('branch.radio.manual')}</span> 
                 </label> 
                 <label className="radio-lable" >
-                    <span className="radio-img"><img width="20" height="20" src="editor-app/react-src/branchSequenceFlow/selected.png" /></span>
+                    <span className="radio-img"><img width="20" height="20" src={require("./selected.png")} /></span>
                     <span className="radio-text">{put('branch.radio.formula')}</span> 
                 </label> 
             </div>
@@ -20,11 +20,11 @@ const Radios = ({mode1,mode2,element,put}) => {
         view = (
             <div className="radio-box">
                 <label className="radio-lable">
-                    <span className="radio-img"><img width="20" height="20" src="editor-app/react-src/branchSequenceFlow/selected.png" /></span>
+                    <span className="radio-img"><img width="20" height="20" src={require("./selected.png")} /></span>
                     <span className="radio-text">{put('branch.radio.manual')}</span> 
                 </label> 
                 <label className="radio-lable" onClick={mode2}>
-                    <span className="radio-img"><img width="20" height="20" src="editor-app/react-src/branchSequenceFlow/unselected.png" /></span>
+                    <span className="radio-img"><img width="20" height="20" src={require("./unselected.png")} /></span>
                     <span className="radio-text">{put('branch.radio.formula')}</span> 
                 </label>  
             </div>

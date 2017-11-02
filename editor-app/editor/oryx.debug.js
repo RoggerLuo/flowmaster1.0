@@ -17886,7 +17886,28 @@ ORYX.Plugins.Edit = Clazz.extend({
      */
     editDelete: function(){
         var selection = this.facade.getSelection();
+
+        /* roger edited delete */
+		var incomings = selection[0].incoming
+		var outgoings = selection[0].outgoing
+		var that = this
+		if(selection[0] && (selection[0]._stencil._jsonStencil.title == "Sequence flow")){
+		}else{
+			that.editDeleteCounterPart(incomings)
+			that.editDeleteCounterPart(outgoings)			
+		}
+		/* roger edited delete */
+
+        var clipboard = new ORYX.Plugins.Edit.ClipBoard();
+        clipboard.refresh(selection, this.getAllShapesToConsider(selection));
         
+		var command = new ORYX.Plugins.Edit.DeleteCommand(clipboard , this.facade);
+                                       
+		this.facade.executeCommands([command]);
+    },
+    editDeleteCounterPart: function(selection){
+        // var selection = this.facade.getSelection();
+
         var clipboard = new ORYX.Plugins.Edit.ClipBoard();
         clipboard.refresh(selection, this.getAllShapesToConsider(selection));
         

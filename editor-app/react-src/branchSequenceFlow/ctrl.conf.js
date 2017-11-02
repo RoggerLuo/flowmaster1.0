@@ -1,6 +1,7 @@
 import {
     Text, NumberInput, Calendar, Time,
-    Dropdown, Org, Employee, Calculate
+    Dropdown, DropdownMulti, Org, Employee, CalculateTime, CalculateDate,
+    dateInSec
 } from './inputComponents'
 
 
@@ -12,11 +13,16 @@ export default {
     date:Calendar,
     time:Time,
     selection:Dropdown,
-    multi_selection:Dropdown,
+    multi_selection:DropdownMulti,
     select_employee:Employee,
     select_org:Org,
     mobile:Text,
     email:Text,
     phone:Text,
-    calculate:Calculate
+    dateDiff:CalculateDate,
+    timeDiff:CalculateTime,
+    sum:NumberInput,
+    mean:NumberInput,
+    formula:Text,
+    dateInSec:dateInSec
 }

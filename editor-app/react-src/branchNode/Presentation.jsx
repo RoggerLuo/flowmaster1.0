@@ -23,7 +23,7 @@ const BranchNode = ({choosedText,choosed,data,put,choosedOption}) => {
             <div className="row-title" style={{justifyContent:'space-between'}}>
                 <div>{put('approveNode.title.staff')}</div>
             </div>    
-            <div className="content-text">所有分支条件都不满足流向节点</div>
+            <div className="content-text">如果所有分支条件都不满足，则流向以下节点：</div>
             <div style={{display: 'flex',position: 'absolute',width: '100%',paddingRight: '22px'}}>
                 <Dropdown options={data} choose={choosed} choosedOption={choosedOption}/>
             </div>

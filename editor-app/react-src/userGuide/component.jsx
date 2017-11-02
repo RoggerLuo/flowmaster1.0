@@ -40,15 +40,12 @@ const final =  {
 }
 const Component = createClass({ 
     getInitialState(){
-       
-
         return {currentStep:step1}
     },
     closeShadow(){
         const chooseCallback = (e) => {
             window.removeEventListener("message",chooseCallback, false)
         }
-
         const callDialogue = () => {
             window.addEventListener('message',chooseCallback,false)
             let message = {type:"closeShadow",value:"123test",params:{pickerType:'people',title:'选择人员'}}
@@ -57,7 +54,6 @@ const Component = createClass({
         callDialogue()
     },
     nextStep(){
-        
         switch(this.state.currentStep.step){
             case '1':
                 this.setState({currentStep:step2})
@@ -70,7 +66,6 @@ const Component = createClass({
                 this.closeShadow()
                 break
         }
-
     },
     stopRemind(){
         this.closeShadow()
@@ -109,7 +104,7 @@ const Component = createClass({
                     <div style={{backgroundColor:this.state.currentStep.middleBackground}} className="middle">
                         
                         <div className="slice3line" style={{display:slice3Display,position:'relative',top:'36%',marginTop:'-62px',left:'88%'}} >
-                            <img src="editor-app/react-src/userGuide/line/3.png"/>
+                            <img src={require("./line/3.png")}/>
                         </div>
 
                         <div className="slice slice1" style={{display:slice1Display}} >
@@ -118,7 +113,7 @@ const Component = createClass({
                             <div className="bottom-text"><span className="stopremind" onClick={this.stopRemind}>{this.props.put('guide.stopRemind')}</span> <span className="iknow">{this.props.put('guide.iknow')}</span></div>
                         </div>
                         <div className="slice1line" style={{display:slice1Display,position:'relative',top:'249px',right:'200px'}} >
-                            <img src="editor-app/react-src/userGuide/line/1.png"/>
+                            <img src={require("./line/1.png")}/>
                         </div>
 
                         <div className="middle-text">{this.state.text}</div>
@@ -133,7 +128,7 @@ const Component = createClass({
                     <div style={{backgroundColor:this.state.currentStep.rightBackground}} className="right">
                         
                         <div className="slice1line" style={{display:slice2Display,position:'relative',top:'323px',left:'20px'}} >
-                            <img src="editor-app/react-src/userGuide/line/2.png"/>
+                            <img src={require("./line/2.png")}/>
                         </div>
 
                         <div className="slice slice2" style={{display:slice2Display}} >

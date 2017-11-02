@@ -95,21 +95,33 @@ activitiModeler
 
             /* Helper method to fetch model from server (always needed) */
             function fetchModel(modelId) {
-
                 /* get user fields data */
-                $http({    
-                    method: 'GET',
-                    url: window.globalHost+'/identity/properties'
-                }).success(function (data2) {
+                $http({ method: 'GET', url: window.globalHost+'/identity/properties'}).success(function (data2) {
                     let linkageData = []
                     let k
                     for( k in data2){
                         linkageData.push({text:k,value:k})
                     }
-                    window.userProperties = linkageData
-
+                    let limited = {
+                        // "birthday": "String", //(毫秒数）
+                        "gender": "String",   // 性别，MALE FEMALE
+                        "jobTitle": "Field",  // 职位
+                        // "nickname": "String", // 昵称
+                        // "disabled": "Boolean", // 是否禁用
+                        // "sn": "String",  // 工号
+                        // "email": "String", // 邮箱
+                        // "initial": "String", // 拼音首字母
+                        // "mobile": "String", // 手机
+                        "senior":"String",//字符串:true/false
+                        // "avatar": "String", // 头像
+                        // "pinyin": "String", // 拼音
+                        // "name": "String",  // 姓名
+                        "username": "String", // 账号
+                        // "status": "String", // 状态 （ACTIVATING， ACTIVATED）
+                        // "id": "String", // userId
+                    }
+                    window.userProperties = linkageData.filter(el=>!!limited[el.value])
                     window.userProperties.unshift({text:'请选择',value:'initial',index:'initial'})
-
                     window.reduxStore.dispatch({type:'updateUserProperties',data:window.userProperties})
                 })
 
@@ -146,18 +158,23 @@ activitiModeler
                     window.formProperties = filteredComponents.map((el)=>{
                         if(el.type == "calculate"){
                             if(el.rule.type != 'dateDiff'){
-                                return {text:el.title,value:el.name,type:'double',cate:el.type}
+                                el.cate = el.type
+                                el.text = el.title
+                                el.value = el.name
+                                el.type = 'double'
+                                return el
                             }
                         }
-                        return {text:el.title,value:el.name,type:el.name_type,cate:el.type}
+                        el.cate = el.type
+                        el.text = el.title
+                        el.value = el.name
+                        el.type = el.name_type
+                        return el
                     })
+
                     window.formProperties.unshift({text:'请选择',value:'initial',index:'initial',type:'initial'})
-
                     window.reduxStore.dispatch({type:'updateFormProperties',data:window.formProperties})
-
                 })
-
-
 
                 /* get role data */
                 $http({    
@@ -172,7 +189,6 @@ activitiModeler
                         }                            
                     })
                     .filter((el)=>(el.value!='OrgSupervisor')&&(el.value!='OrgLeader'))
-
                     roleData.forEach((el,ind,arr)=>{
                         if(arr.filter((el2)=>el2.text == el.text).length>1){
                             $http({    
@@ -239,7 +255,6 @@ activitiModeler
                                 }else{
                                     window.reduxStore.dispatch({type:'sequenceDataInit',data:el.properties.reduxdata})                                    
                                 }
-
                                 /* exclusive gate的内容 */
                                 if(el.properties.defaultflow== "true" ){
                                     /*  
@@ -343,30 +358,20 @@ activitiModeler
                     $rootScope.editor = new ORYX.Editor(data.model);  //initialised   10866 12431 10060
                     $rootScope.modelData = angular.fromJson(data.model);
 
-
-
-
                 // var modelUrl = KISBPM.URL.getModel(modelId);
                 // $http({method: 'GET', url: modelUrl}).success(function (data, status, headers, config) {
                 //     $rootScope.editor = new ORYX.Editor(data);  //initialised   10866 12431 10060
                 //     $rootScope.modelData = angular.fromJson(data);
                     
-
-
-
                     $rootScope.editorFactory.resolve();
 
                 })
-
-
 
                 // .
                 //     error(function (data, status, headers, config) {
                 //       console.log('Error loading model with id ' + modelId + ' ' + data);
                 //     });
             }
-
-
 
             function initScrollHandling() {
                 var canvasSection = jQuery('#canvasSection');

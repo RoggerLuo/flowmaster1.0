@@ -6,12 +6,17 @@ let initial = {
     showSpin:false,
     alertContent:'',
     alertType:'good',
-    nextElOfSF:''
+    nextElOfSF:'',
+    roleData:[]
 }
 
 const Reducer = (state = initial, action) => {
     const data = fromJS(state)
     switch (action.type) {
+        case 'updateRoleData':
+            return Object.assign({}, state, {
+                roleData:action.roleData
+            })
         case 'nextElOfSF':
             return Object.assign({}, state, {
                 nextElOfSF:action.name,

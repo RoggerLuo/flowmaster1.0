@@ -12,7 +12,20 @@ const Rule = ({dropdownData,ruleMode,del,oninput}) => {
         border = '1px solid white'
         display = 'none'
     }
-    const InputComp = ctrlComponents[dropdownData.ctrlTemplate]
+
+    let InputComp = ctrlComponents[dropdownData.inputCtrlInfoData.cate] ||  ctrlComponents.text
+    if(dropdownData.inputCtrlInfoData.cate == 'calculate'){
+        InputComp = ctrlComponents[dropdownData.inputCtrlInfoData.rule.type]
+        //dateDiff //timeDiff //sum  //mean  //formula
+    }
+    if(dropdownData.inputCtrlInfoData.cate ==  'date'){
+        if(dropdownData.inputCtrlInfoData.format != "YYYY-MM-DD"){
+            InputComp = ctrlComponents.time
+        }
+    }    
+
+
+
     return (
         <div className="delete-frame" style={{border:border}}>
             <div style={{display:display,
@@ -33,9 +46,8 @@ const Rule = ({dropdownData,ruleMode,del,oninput}) => {
                 </i>
             </div>    
             <div className="container-row-placeholder"></div>
-            <InputComp inputCompData = {}/>
+            <InputComp inputData={dropdownData.input} oninput={oninput} inputCtrlInfoData={dropdownData.inputCtrlInfoData}/>
         </div>
     )
 }
-/* <InputTest value={dropdownData.input} oninput={oninput}/> */
 export default Rule

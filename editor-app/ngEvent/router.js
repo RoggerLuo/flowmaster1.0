@@ -1,5 +1,4 @@
-'use strict';
-
+'use strict'
 window.globalEvent =  window.globalEvent || {}
 window.globalEvent.router =  window.globalEvent.router || {}
 
@@ -10,6 +9,7 @@ const isRepeated = (name) => {
         return el.properties.name==name
     })            
 }
+window.isRepeated = isRepeated
 
 /* 自动命名 */
 const giveName = (cate) => {
@@ -31,13 +31,8 @@ const giveName = (cate) => {
         "End error event":"异常结束",
         "Multi user task":"会签"
     }
-    // cate  = mapArr[cate]
     const json = window.getRawJson()        
-
     /* 计算此类有多少个 */
-    // let num = json.childShapes.filter((el2,index2)=>{
-    //     return el2.stencil.id==cate
-    // }).length
     let num = 1
     let name = mapArrCN[cate] + num
     while(isRepeated(name)){
@@ -47,10 +42,9 @@ const giveName = (cate) => {
     return name
 }
 
-
-    /* 
-        mini router 
-    */
+/* 
+    mini router 
+*/
 window.globalEvent.router = function($scope,event){
     var selectedShape = event.elements.first()
     if (!selectedShape) {
@@ -67,7 +61,6 @@ window.globalEvent.router = function($scope,event){
             window.activeSave()            
         }
     }
-
     if (selectedShape.incoming[0] && selectedShape.incoming[0]._stencil._jsonStencil.title == 'Exclusive gateway') {
         /* 如果defaultflow为 true则显示普通节点 */
         if(selectedShape.properties['defaultflow'] == 'true'){
@@ -77,7 +70,6 @@ window.globalEvent.router = function($scope,event){
             $scope.propertyTpl = './editor-app/property-tpl/branchSequenceFlow.html';
         }
     } else {
-
         switch (selectedShape._stencil._jsonStencil.title) {
             case 'User task':
                 $scope.propertyTpl = './editor-app/property-tpl/approve.html';
@@ -106,4 +98,3 @@ window.globalEvent.router = function($scope,event){
         }
     }
 }
-

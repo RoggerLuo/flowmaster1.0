@@ -78,15 +78,15 @@ const Options =   ({conditions,element,put,nextElement}) => {
                     <div className="section-title">{put('branch.remark.title')}</div>
                     <div className="property-row-content">
                         {put('branch.remark.content1')}；<br/>
-                        {put('branch.remark.content2')}；<br/>
-                        {put('branch.remark.contentTimeDoc')}。
+                        {put('branch.remark.content2')}。
+                        
                     </div>
                 </div>
             )
         }
     }
 }
-
+//{put('branch.remark.contentTimeDoc')}
 const mapStateToProps = (state) => {
     const nextElement = state.common.nextElOfSF
     const elementFound = state.branch.dataRepo.filter((el,index)=>{

@@ -2,14 +2,12 @@ export const defaultOption = () => {
     return { text: '请选择', value: 'initial', index: 'initial' }
 }
 export const newRule = () => {
-    /* 
-        创建的时候就指定了默认值 
-    */
+    /* 创建的时候就指定了默认值 */
     return {
         entry1: { text: 'pleaseChoose', value: 'initial', index: 'initial' },
         entry2: { text: '请选择', value: 'initial', index: 'initial' },
-        entry3: { text: '请选择', index: 'initial', value: "initial" },
-        input: ''
+        entry3: { text: '请选择', value: 'initial', index: 'initial' },
+        input: { text: '', value: '' }
     }
 }
 export const newCreate = (state) => {

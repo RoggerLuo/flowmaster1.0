@@ -42,15 +42,34 @@
                 </div>
             </div>
             <div id="canvasHelpWrapper" class="col-xs-7" style="width:67%;">
-                <div class="canvas-wrapper" id="canvasSection" ng-model="droppedElement" ng-model="droppedElement" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}">
+                <div class="canvas-wrapper" 
+                    id="canvasSection" 
+                    ng-model="droppedElement" 
+                    ng-model="droppedElement" 
+                    data-drop="true" 
+                    data-jqyoui-options jqyoui-droppable="{onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}"
+                >
                     <div class="canvas-message" id="model-modified-date"></div>
                     <div>
                         <!-- <div class="Oryx_button" id="delete-button" title="{{'BUTTON.ACTION.DELETE.TOOLTIP' | translate}}" ng-click="deleteShape()" style="display:none"> -->
-                        <div ng-mouseleave="hover = false" ng-mouseenter="hover = true" class="Oryx_button" id="delete-button" title="删除" ng-click="deleteShape()" style="display:none;">
-                            <img ng-hide="hover"  ng-init="hover=false" src="editor-app/images/delete.svg" style='margin:auto;width:15px; height:16px;padding-right:1px;margin-top: 6px;' />
-                            <img ng-hide="!hover" src="editor-app/images/deleteblue.svg" style='margin:auto;width:15px; height:16px;padding-right:1px;margin-top: 6px;' />
-
+                        <div ng-mouseleave="hover = false" 
+                            ng-mouseenter="hover = true" 
+                            class="Oryx_button" 
+                            id="delete-button" 
+                            title="删除" ng-click="deleteShape()" style="display:none;"
+                        >
+                            <img ng-hide="hover"  
+                                ng-init="hover=false" 
+                                src="editor-app/images/delete.svg" 
+                                style='margin:auto;width:15px; height:16px;padding-right:1px;margin-top: 6px;' 
+                            />
+                            <img 
+                                ng-hide="!hover" 
+                                src="editor-app/images/deleteblue.svg" 
+                                style='margin:auto;width:15px; height:16px;padding-right:1px;margin-top: 6px;' 
+                            />
                         </div>
+
                         <div ng-mouseleave="hover = false" ng-mouseenter="hover = true" class="Oryx_button" ng-repeat="item in quickMenuItems" id="{{item.id}}" title="{{item.description}}" ng-click="quickAddItem(item.id)" ng-model="draggedElement" data-drag="true" jqyoui-draggable="{onStart:'startDragCallbackQuickMenu', onDrag:'dragCallbackQuickMenu'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}" style="display:none">
                             <img ng-src="editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}.svg" ng-hide="hover"  ng-init="hover=false"/>
                             <img ng-src="editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}blue.svg" ng-hide="!hover"/>

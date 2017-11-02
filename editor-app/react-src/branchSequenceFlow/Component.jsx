@@ -15,11 +15,9 @@ const Component = ({put}) => {
             <SectionTitleContainer text={put('branch.sectionTitle')}/>   
             <Radios />
             <Options />
-            
         </div>
     )
 }
-
 import connectPut from 'react-put'
 const options = {mapPropToDictionary: (props)=>window.reactI18n}
 const ConnectedApp = connectPut(options)(Component)

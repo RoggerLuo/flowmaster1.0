@@ -38,7 +38,6 @@ const DropdownRaw = ({options,choose,choosedOption,display,toggle,close,put,useP
     if(!usePut){
         put = (value)=>value
     }
-
     return (
         <div className="branch-dropdown" style={{flex:'1'}}>
             <div style={{display: 'flex'}} className="drop-down-choosed" onClick={toggle}>
@@ -48,7 +47,7 @@ const DropdownRaw = ({options,choose,choosedOption,display,toggle,close,put,useP
                     <i style={{paddingTop: '3px',color:'#00b0ff',transform:'rotate(180deg)',display:display}} className="icon iconfont icon-sanjiao1" ></i>
                 </div>
             </div>
-            <table className="drop-down-table" style={{zIndex:'9999',width: '32.3%'}} >
+            <table className="drop-down-table" style={{zIndex:'111110',width: '32.3%'}} >
                 <tbody>
                     <tr style={{display:'none'}}>
                         <td className="drop-down-choosed stop-propagation" onClick={toggle} style={{color:'black',display:'flex',justifyContent: 'space-between'}}>

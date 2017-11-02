@@ -9,3 +9,5 @@ this.facade.registerOnEvent(ORYX.CONFIG.EVENT_KEYDOWN, this.keyHandler.bind(this
 
 2017 Jun 13th
 12132行 catchKeyUpEvents
+
+test

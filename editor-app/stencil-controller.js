@@ -1723,9 +1723,5 @@ KISBPM.CreateCommand = ORYX.Core.Command.extend({
         this.facade.setSelection(this.facade.getSelection().without(this.shape, this.edge));
     }
 
-
-
-
-
 });
 
