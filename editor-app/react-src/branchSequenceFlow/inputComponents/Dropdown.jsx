@@ -1,5 +1,5 @@
 import React,{createClass} from 'react'
-import Dropdown from './dpdw.jsx'
+import Dropdown from './dpdwPre.jsx'
 
 function Comp({ inputData, oninput, inputCtrlInfoData }){
     if(inputData.text ==''){

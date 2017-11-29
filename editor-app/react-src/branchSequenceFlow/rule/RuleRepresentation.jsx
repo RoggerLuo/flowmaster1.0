@@ -25,7 +25,6 @@ const Rule = ({dropdownData,ruleMode,del,oninput}) => {
     }    
 
 
-
     return (
         <div className="delete-frame" style={{border:border}}>
             <div style={{display:display,

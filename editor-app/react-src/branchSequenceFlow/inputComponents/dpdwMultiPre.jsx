@@ -34,11 +34,13 @@ const Option = ({click,el,put,choosedOption}) =>{
 */
 const DropdownRaw = ({options,choose,choosedOption,display,toggle,close,put,usePut}) => {
     let nDisplay = display == 'none'? '':'none'
+    let zIndex = display == 'none'? '99':'99999'
     if(!usePut){
         put = (value)=>value
     }
+    
     return (
-        <div className="branch-dropdown-input" style={{flex:'1'}}>
+        <div className="branch-dropdown-input" style={{flex:'1',zIndex}}>
             <div style={{display: 'flex'}} className="drop-down-choosed" onClick={toggle}>
                 <div style={{overflow: 'hidden',margin: 'auto',paddingLeft: '16px'}}>{put(choosedOption.text)}</div> 
                 <div className="inverted-triangle">
@@ -80,7 +82,7 @@ const DropdownRaw = ({options,choose,choosedOption,display,toggle,close,put,useP
                 </tbody>
             </table>
             </div>
-            <div className="big-cover" style={{display:display}} onClick={close}></div>
+            <div className="big-cover" style={{display:display,position: 'absolute'}} onClick={close}></div>
         </div>
     )
 }
@@ -114,8 +116,7 @@ const DropdownContainer = createClass({
                 
                 display:this.state.display,
                 toggle:this.toggle,
-                close:this.close}}
-            />
+                close:this.close}}/>
         )
     }
 })

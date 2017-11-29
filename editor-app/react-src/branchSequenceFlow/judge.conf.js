@@ -158,7 +158,33 @@ const rawData = {
         }, {
             value: '<=',
             text: '小于等于'
-        }]
+        }],
+    dateDiff: [{
+            value: '==',
+            text: '等于'
+        }, {
+            value: '!=',
+            text: '不等于'
+        }],
+    timeDiff:[{
+            value: '==',
+            text: '等于'
+        }, {
+            value: '!=',
+            text: '不等于'
+        }, {
+            value: '>',
+            text: '大于'
+        }, {
+            value: '<',
+            text: '小于'
+        }, {
+            value: '>=',
+            text: '大于等于'
+        }, {
+            value: '<=',
+            text: '小于等于'
+        }],
 }
 const arr = []
 let k

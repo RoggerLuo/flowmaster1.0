@@ -13,11 +13,9 @@ choosedOption和options都是传入进来的，所以逻辑在外面，有一个
 /*style={{textAlign: 'center'}}*/
 const Option = ({click,el,put,choosedOption}) =>{
     let className="inner-option "
-    choosedOption.data.map(el=>el.value).forEach(chooseOptionEl => {
-        if(el.value == chooseOptionEl){
-            className="inner-option checkok"
-        }
-    })
+    if(el.value == choosedOption.value){
+        className="inner-option checkok"
+    }
     return (
         <div className="drop-down-option" onClick={click}>
             <div className={className} >
@@ -34,11 +32,13 @@ const Option = ({click,el,put,choosedOption}) =>{
 */
 const DropdownRaw = ({options,choose,choosedOption,display,toggle,close,put,usePut}) => {
     let nDisplay = display == 'none'? '':'none'
+    let zIndex = display == 'none'? '99':'99999'
+
     if(!usePut){
         put = (value)=>value
     }
     return (
-        <div className="branch-dropdown-input" style={{flex:'1'}}>
+        <div className="branch-dropdown-input" style={{flex:'1',zIndex}}>
             <div style={{display: 'flex'}} className="drop-down-choosed" onClick={toggle}>
                 <div style={{overflow: 'hidden',margin: 'auto',paddingLeft: '16px'}}>{put(choosedOption.text)}</div> 
                 <div className="inverted-triangle">
@@ -63,16 +63,7 @@ const DropdownRaw = ({options,choose,choosedOption,display,toggle,close,put,useP
                             <div className="scrollbar" style={{overflow:'auto',maxHeight:'191px'}}>
                                 {options.map((el,index)=>{
                                     el.index = index
-                                    return(
-                                        <Option 
-                                            click={(event)=>{
-                                                choose(el)
-                                                event.stopPropagation()
-                                                event.preventDefault()
-                                            }}
-                                            choosedOption={choosedOption} el={el} key={index} put={put}
-                                        />
-                                    )
+                                    return(<Option click={()=>{close();choose(el)}} choosedOption={choosedOption} el={el} key={index} put={put}/>)
                                 })}
                             </div>
                         </td>                
@@ -80,10 +71,11 @@ const DropdownRaw = ({options,choose,choosedOption,display,toggle,close,put,useP
                 </tbody>
             </table>
             </div>
-            <div className="big-cover" style={{display:display}} onClick={close}></div>
+            <div className="big-cover" style={{display:display, position: 'absolute'}} onClick={close}></div>
         </div>
     )
 }
+
 
 import connectPut from 'react-put'
 const putOptions = {mapPropToDictionary: (props)=>window.reactI18n}
@@ -114,8 +106,7 @@ const DropdownContainer = createClass({
                 
                 display:this.state.display,
                 toggle:this.toggle,
-                close:this.close}}
-            />
+                close:this.close}}/>
         )
     }
 })

@@ -1,5 +1,5 @@
 import React,{createClass} from 'react'
-import Dropdown from './dpdwMulti.jsx'
+import Dropdown from './dpdwMultiPre.jsx'
 
 function Comp({ inputData, oninput, inputCtrlInfoData }){
     if(inputData.text ==''){
@@ -24,7 +24,6 @@ function Comp({ inputData, oninput, inputCtrlInfoData }){
             }
         }
         value = '"'+value+'"'
-        debugger
         oninput({
             data:inputData.data,
             text: inputData.data.map(el=>el.text).join('，'),

@@ -34,9 +34,10 @@ export default (conditions, chooseFactory, branch, key1, key2) => {
         //     break
     }
     //三级联动 //第三个下拉，判断符号，> = 
+
     template.entry3.options = judgeList[inputCtrlInfoData.cate] || judgeList.text
     if(inputCtrlInfoData.cate =='calculate'){
-        // template.entry3.options = judgeList[inputCtrlInfoData.rule.type] 
+        template.entry3.options = judgeList[inputCtrlInfoData.rule.type] 
         //dateDiff //timeDiff //sum  //mean  //formula
     }
 
