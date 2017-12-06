@@ -15,6 +15,7 @@ const Component = ({put}) => {
             <SectionTitleContainer text={put('branch.sectionTitle')}/>   
             <Radios />
             <Options />
+            <div style={{height:'100px',width:'100%'}}></div>
         </div>
     )
 }
