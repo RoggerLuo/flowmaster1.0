@@ -37,10 +37,12 @@ export default (conditions, chooseFactory, branch, key1, key2) => {
 
     template.entry3.options = judgeList[inputCtrlInfoData.cate] || judgeList.text
     if(inputCtrlInfoData.cate =='calculate'){
+        // debugger
         template.entry3.options = judgeList[inputCtrlInfoData.rule.type] 
         //dateDiff //timeDiff //sum  //mean  //formula
     }
-
+    // console.log(template)
+    // debugger
     //设置选中项
     template.entry1.choosedOption = ruleEl.entry1
     template.entry2.choosedOption = ruleEl.entry2
@@ -55,5 +57,7 @@ export default (conditions, chooseFactory, branch, key1, key2) => {
     template.entry1.usePut = true
     template.entry2.usePut = false
     template.entry3.usePut = false
+    
+
     return template
 }

@@ -23,8 +23,6 @@ const Rule = ({dropdownData,ruleMode,del,oninput}) => {
             InputComp = ctrlComponents.time
         }
     }    
-
-
     return (
         <div className="delete-frame" style={{border:border}}>
             <div style={{display:display,

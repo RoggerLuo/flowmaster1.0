@@ -38,6 +38,7 @@ const DropdownRaw = ({options,choose,choosedOption,display,toggle,close,put,useP
     if(!usePut){
         put = (value)=>value
     }
+    options = options||[]
     return (
         <div className="branch-dropdown" style={{flex:'1'}}>
             <div style={{display: 'flex'}} className="drop-down-choosed" onClick={toggle}>
