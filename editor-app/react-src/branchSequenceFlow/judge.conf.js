@@ -225,6 +225,13 @@ const rawData = {
             value: '<=',
             text: '小于等于'
         }],
+    formula:[{
+            value: '==',
+            text: '等于'
+        }, {
+            value: '!=',
+            text: '不等于'
+        }]
 }
 const arr = []
 let k
