@@ -23,6 +23,6 @@ export default {
     timeDiff:CalculateTime,
     sum:NumberInput,
     mean:NumberInput,
-    formula:Text,
+    formula:NumberInput,
     dateInSec:dateInSec
 }

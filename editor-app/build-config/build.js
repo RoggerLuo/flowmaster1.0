@@ -18,8 +18,8 @@ webpack(webpackConfig, function(err, stats) {
         if (!err) {
             console.log('Gulp info:')
             console.log(stdout)
-            console.log('Copying files to product env...')
-            copyFile(src, dst)
+            // console.log('Copying files to product env...') 要死啊，现在不能copy所有
+            // copyFile(src, dst)
         }
         if (err) console.log(err)
     })
