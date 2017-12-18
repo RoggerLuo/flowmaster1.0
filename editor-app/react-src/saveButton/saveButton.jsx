@@ -49,7 +49,8 @@ const ComponentContainer = connect(
 )(ConnectedApp)
 
 
-export default function(){
+// export default 
+function defaultRrender(){
     render(
         <Provider store={store}>
             <ComponentContainer />
@@ -58,3 +59,4 @@ export default function(){
         document.getElementById('bottom-save')
     )
 }
+global.saveButton = {render:defaultRrender,flag:true}

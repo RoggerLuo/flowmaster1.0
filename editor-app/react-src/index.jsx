@@ -1,3 +1,6 @@
+import './saveButton/saveButton'
+// import saveButton from './saveButton/saveButton'
+
 import '../ngEvent'
 
 import './userGuide/component'
@@ -13,7 +16,6 @@ import branchSequenceFlowComponent from './branchSequenceFlow/Component'
 import branchNodeComponent from './branchNode/Container'
 import popupStart from './popup/popupWrapContainer'
 import store from '../redux/configureStore'
-import saveButton from './saveButton/saveButton'
 import myAlert from './alert/alert'
 import mySpin from './alert/spin'
 
@@ -21,7 +23,7 @@ import mySpin from './alert/spin'
 popupStart()
 myAlert()
 mySpin()
-global.saveButton = {render:saveButton,flag:true}
+// global.saveButton = {render:saveButton,flag:true}
 global.branchSequenceFlowComponent = {render:branchSequenceFlowComponent}
 global.parallelApproveComponent = {render:parallelApproveComponent}
 global.approveComponent = {render:approveComponent}
